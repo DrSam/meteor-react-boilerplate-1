@@ -19,38 +19,6 @@ export const push = ( array, item ) => array.push( item );
 export const map = ( array, iteratee ) => array.map( iteratee );
 export const each = ( array, iteratee ) => array.forEach( iteratee );
 export const reduce = func => array => init => array.reduce( func, init );
-export const copy = array => EJSON.parse( JSON.stringify( array ) );
-export const getIndexByIteratee = ( array, iteratee ) => {
-	let i = -1;
-
-	while ( array[ ++i ] ) {
-		const res = iteratee( array[ i ], i, array );
-		if ( res ) return ( i );
-	}
-};
-export const deepMerge = ( firstArray, secondArray, firstAttr, secondAttr ) => {
-	const returnedArray = [];
-	const copiedArray = copy( secondArray );
-
-	map( firstArray, obj => {
-		const valueToCheck = obj[ firstAttr ];
-		const newObj = {};
-		let firstFound = false;
-
-		push( returnedArray, Object.assign( newObj, obj ) );
-
-		if ( copiedArray.length ) {
-			map( copiedArray, ( el, index ) => {
-				if ( !firstFound && valueToCheck == copiedArray[ index ][ secondAttr || firstAttr ] ) {
-					Object.assign( newObj, copiedArray[ index ] );
-					firstFound = true;
-				}
-			} );
-		}
-	} );
-
-	return ( returnedArray );
-};
 
 /**
  * Collection methods
@@ -128,32 +96,7 @@ export const fixedDec = ( number, nDec = 1 ) => Number( number.toFixed( nDec ) )
  */
 export const withoutQueryParams = url => url.split('?')[0]
 
-
 /**
- * UI methods
+ * Misc methods
  */
- 
-export const noBodyScroll = () => { $('body').addClass("noBodyScroll"); };
-export const acceptBodyScroll = () => { $('body').removeClass("noBodyScroll"); };
- 
-/**
- * EVENT methods
- */ 
- export const eventFire = (el, etype) => {
-  if (el.fireEvent) {
-    el.fireEvent('on' + etype);
-  } else {
-    var evObj = document.createEvent('Events');
-    evObj.initEvent(etype, true, false);
-    el.dispatchEvent(evObj);
-  }
-}
-
-/*
-Date.prototype.stdTimezoneOffset = function(){
-  const jan = new Date( this.getFullYear(), 0, 1 );
-  const jul = new Date( this.getFullYear(), 6, 1 );
-
-  return Math.max( jan.getTimezoneOffset(), jul.getTimezoneOffset() );
-};
-*/
+export const copy = arg => ( ( arg instanceof Array ) ? [...arg] : {...arg} );
