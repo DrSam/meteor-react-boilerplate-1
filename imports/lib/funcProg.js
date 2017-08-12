@@ -13,6 +13,7 @@ export const pipe = ( funcs, init ) => ( reduce( ( res, func ) => func( res ) )(
 /**
  * Array methods
  */
+export const sort = ( array, iteratee ) => array.sort( iteratee );
 export const filter = ( array, iteratee ) => array.filter( iteratee );
 export const push = ( array, item ) => array.push( item );
 export const map = ( array, iteratee ) => array.map( iteratee );
@@ -63,6 +64,20 @@ export const update = ( coll, selector = {}, modifier, multi = false ) => coll.u
 export const findOne = ( coll, selector = {}, projection ={} ) => coll.findOne( selector, projection );
 export const aggregate = ( coll, pipes ) => coll.aggregate( pipes );
 export const observe = ( cursor, cbks ) => cursor.observeChanges( cbks );
+export const getDocsById = ( coll, _id = "", _fields = [], limit = 0, sort = { _id: -1 } ) => {
+	check( coll, Mongo.Collection );
+	check( _id, Match.OneOf( String, [String] ) )
+	check( _fields, [String] );
+	check( limit, Number );
+	check( sort, Object );
+
+	const method = _id.length ? 'find' : 'findOne';
+	const fields = {};
+
+	if ( _fields ) _fields.forEach( field => { fields[ field ] = true } );
+
+	return ( coll[ method ]( { _id }, { fields, sort, limit } ) );
+};
 
 /**
  * Text methods
