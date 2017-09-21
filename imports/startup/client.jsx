@@ -1,58 +1,95 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom';
-import { createContainer } from 'react-meteor-data';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import { createContainer } from 'react-meteor-data';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-import Login from '/imports/ui/Login';
-import Home from '/imports/ui/Home';
+import '/imports/api/methods';
 
+//import ApolloClient from 'apollo-client';
+//import { meteorClientConfig } from 'meteor/apollo';
+//const client = new ApolloClient( meteorClientConfig() );
+
+import App from '/imports/ui/App';
+import { store } from '/imports/redux';
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
-// Import functionnal programming functions & aliases this way
-// import { map, find, findOne, now } from '/imports/lib';
+/*
+import {
+  brown700, brown500,
+  cyan500,
+  pinkA200,
+  tealA700,
+  grey100, grey300, grey400, grey500,
+  white, darkBlack, fullBlack,
+} from 'material-ui/styles/colors';
+import {fade} from 'material-ui/utils/colorManipulator';
 
-const Authenticated = ({ loggingIn, userId, component, ...rest }) => {
-	const _CompToRender = props => {
-	  if ( loggingIn )
-	  	return ( <div>Logging in...</div> );
-	  else if ( userId )
-	  	return ( <component userId={userId} {...props} /> );
-	  else
-	  	return ( <Redirect to="/login" /> );
-	};
+const customMuiTheme = getMuiTheme({
+	palette: {
+    primary1Color: brown700, // Topbar color and icons of actio bar when you click on it
+    primary2Color: brown700, // Sert à rien pour l'instant
+    primary3Color: brown700, // Sert à rien pour l'instant
+    accent1Color: cyan500, // Sert à rien pour l'instant
+    accent2Color: cyan500, // Sert à rien pour l'instant
+    accent3Color: cyan500, // Sert à rien pour l'instant
+    textColor: fullBlack, // Color of the text (actionbar's icons, search bar,...)
+    secondaryTextColor: fade(tealA700, 0.54), // Sert à rien pour l'instant
+    alternateTextColor: white, // Chage the title color, the text on the appbar but not the one when you click on search
+    canvasColor: white, // color of the action bar
+    borderColor: white, // color of the small line under SEARCH
+    disabledColor: fade(white, 1), // color of the text SEARCH by default
+    pickerHeaderColor: tealA700, // Sert à rien pour l'instant
+    clockCircleColor: fade(tealA700, 0.7), // Sert à rien pour l'instant
+    shadowColor: tealA700, // Sert à rien pour l'instant
+  }
+});
+*/
 
-	return ( <Route render={_CompToRender} {...rest} /> );
-};
-
-const App = createContainer( appProps => {
+const AuthWrapper = createContainer( appProps => {
 	const userId = Meteor.userId();
-	const loggingIn = Meteor.loggingIn();
 
-	return ({ userId, loggingIn });
-}, props => (
-	<main>
-		<Switch>
-			<Route component={Login} exact path="/login" />
-			<Authenticated component={Home} exact path="/" {...props} />
-		</Switch>
-	</main>
+	return ({ userId });
+}, ({ userId, loggingIn }) => (
+	<MuiThemeProvider /*muiTheme={customMuiTheme}*/>
+		<Provider store={store}>
+      <BrowserRouter>
+        <App userId={userId} loggingIn={loggingIn} />
+      </BrowserRouter>  
+    </Provider>
+	</MuiThemeProvider>
 ) );
 
+window.requestAnimFrame = function(){
+    return (
+        window.requestAnimationFrame       || 
+        window.webkitRequestAnimationFrame || 
+        window.mozRequestAnimationFrame    || 
+        window.oRequestAnimationFrame      || 
+        window.msRequestAnimationFrame     || 
+        function(/* function */ callback){
+            window.setTimeout(callback, 1000 / 60);
+        }
+    );
+}();
+
+window.cancelAnimationFrame = window.cancelAnimationFrame
+    || window.mozCancelAnimationFrame
+    || function(requestID){clearTimeout(requestID)}; //fall back
+
 Meteor.startup( f => {
-	//new WOW().init();
+	new WOW().init();
+	//global.subsCache = new SubsCache( 5, 10 );
 
 	render(
-		<MuiThemeProvider>
-			<BrowserRouter>
-		    <App />
-		  </BrowserRouter>
-		</MuiThemeProvider>
-	  , document.getElementById('render-target')
+		<AuthWrapper />	
+	 	, document.getElementById('render-target')
 	);
 } );

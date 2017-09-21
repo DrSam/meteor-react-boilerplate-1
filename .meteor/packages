@@ -12,11 +12,17 @@ ecmascript
 shell-server
 
 accounts-password
+#accounts-facebook
+#service-configuration
+
 #dynamic-import
 #check
 #reactive-dict
 #ejson
 
-#timmyg:wow
+timmyg:wow
 #dburles:mongo-collection-instances
 #anti:fake
+#apollo
+#ccorcos:subs-cache
+#meteorhacks:search-source
