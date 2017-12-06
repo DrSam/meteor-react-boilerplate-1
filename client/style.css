@@ -24,6 +24,23 @@
 	color: #333;
 	font-size: 20px;
 }
+.pageWrapper nav{
+	background: #ffad40;
+}
+.contentWrapper,.formWrapper{
+	width: 94%;
+	margin: 0px auto;
+}
+.range-slider-container{
+	padding: 0 15px;
+}
+.page-footer{
+	padding-top: 0;
+	background-color: #ffad40;
+}
+#sidenav-overlay{
+	z-index: 1;
+}
 .header .mdi{
 	padding-top: 4px;
 	padding-right: 4px;
