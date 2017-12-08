@@ -1,0 +1,75 @@
+.left-alignedLogo, .center-text, .right-alignedBtn {
+    width: 33.33%;
+    float: left;
+}
+.text-center {
+    text-align: center;
+}
+.blue { color: deepskyblue; }
+.amber { color: darkorange; }
+.main-header {
+    width: 100%;
+    padding: 0 20px;
+    float: left;
+    clear: both;
+}
+.left-alignedLogo img {
+    width: 100%;
+    height: 100%;
+    max-width: 50px;
+    margin-top: 5px;
+}
+.right-alignedBtn {
+    text-align: right;
+    position: relative;
+}
+.search-form {
+    display: table;
+    width: 100%;
+}
+.searchbox-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+}
+.search-box {
+    background-color: rgba(204, 204, 204, 0.6) !important;
+    box-shadow: 1px 1px 1px #a5a5a5;
+    padding: 0 10px !important;
+    border-radius: 40px;
+    display: block !important;
+}
+.search-box input {
+    padding: 10px 0;
+}
+.search-field {
+    height: 40px !important;
+}
+.headerSearch {
+    border: 2px solid rgba(69, 195, 199, 0.87) !important;
+}
+.right-alignedBtn .search-icon {
+    position: absolute;
+    left: 12%;
+    z-index: 1;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.search-form .signinBtn {
+    background-color: #ffffff !important;
+    border: 1px solid deepskyblue;
+    color: deepskyblue;
+    margin: 10px;
+}
+.search-form .signinIcon {
+    margin-right: 10px;
+}
+.subheader-wrappper {
+    width: 100%;
+    float: left;
+    clear: both;
+    margin: 0 auto;
+}
+.search {
+    color: rgb(152, 152, 152);
+    z-index: 1;
+}

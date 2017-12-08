@@ -4,9 +4,8 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { createContainer } from 'react-meteor-data';
-
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { createMuiTheme, getMuiTheme, MuiThemeProvider } from 'material-ui/styles';
+import { purple, green } from 'material-ui/colors';
 
 import '/imports/api/methods';
 
@@ -53,12 +52,19 @@ const customMuiTheme = getMuiTheme({
 });
 */
 
+const theme = createMuiTheme({
+    palette: {
+        primary: purple,
+        secondary: green,
+    },
+});
+
 const AuthWrapper = createContainer( appProps => {
 	const userId = Meteor.userId();
 
 	return ({ userId });
 }, ({ userId, loggingIn }) => (
-	<MuiThemeProvider /*muiTheme={customMuiTheme}*/>
+	<MuiThemeProvider theme={theme}>
 		<Provider store={store}>
       <BrowserRouter>
         <App userId={userId} loggingIn={loggingIn} />

@@ -1,14 +1,9 @@
 import React from 'react';
 import autobind from 'react-autobind';
 
-import {
-	Card,
-	CardActions,
-	CardTitle,
-} from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
-import TextField from 'material-ui/TextField';
+import Card, { CardActions, CardContent } from 'material-ui/Card';
+import {Button, TextField} from 'material-ui';
+import {FormControl} from 'material-ui/Form';
 
 class Login extends React.Component {
 	state = {
@@ -16,12 +11,12 @@ class Login extends React.Component {
 		password: "",	
 	};
 
-	handleChangeEmail = ( event, email ) => {
-		this.setState({ email });
+	handleChangeEmail = ( event ) => {
+		this.setState({ email: event.target.value });
 	};
 
-	handleChangePassword = ( event, password ) => {
-		this.setState({ password });
+	handleChangePassword = ( event ) => {
+		this.setState({ password: event.target.value });
 	};
 
 	handleFormSubmit = ( event ) => {
@@ -44,34 +39,30 @@ class Login extends React.Component {
 				onSubmit={this.handleFormSubmit}
 			>
 				<Card className="full-width">
-					<CardTitle
-						title="Login"
-					/>
-					<div style={{width: '95%', margin: 'auto'}}>
+					<CardContent>
+					<div>
+						<h2>Login</h2>
+						<FormControl fullWidth>
 						<TextField
 							onChange={this.handleChangeEmail}
-							floatingLabelText="Email"
+							label="Email"
 							value={email}
-							type="email"
-							fullWidth
+
 						/>
 						<TextField
 							onChange={this.handleChangePassword}
-							floatingLabelText="Password"
+							label="Password"
 							value={password}
 							type="password"
-							fullWidth
 						/>
+						</FormControl>
 					</div>
+					</CardContent>
 					<CardActions className="align-right">
-						<RaisedButton
-							primary
-							label="Login"
-							type="submit"
-						/>
-						<FlatButton
-							label="Signup"
-						/>
+						<Button raised color="primary" type="submit">Login</Button>
+						<Button raised>
+							Signup
+						</Button>
 					</CardActions>
 				</Card>
 			</form>

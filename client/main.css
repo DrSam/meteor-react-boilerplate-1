@@ -83,10 +83,6 @@ body, html {
   text-align: left;
 }
 
-.align-right {
-  text-align: right;
-}
-
 .container {
   padding-left: 7.5%;
   padding-right: 7.5%;
@@ -131,4 +127,7 @@ body, html {
 
 .half-transparent {
   opacity: 0.5;
+}
+.align-right {
+  float: right;
 }
