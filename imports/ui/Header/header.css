@@ -1,12 +1,46 @@
 .left-alignedLogo, .center-text, .right-alignedBtn {
     width: 33.33%;
     float: left;
+    font-family: 'Roboto', sans-serif;
 }
 .text-center {
     text-align: center;
 }
-.blue { color: deepskyblue; }
-.amber { color: darkorange; }
+.blue { color: #4e93b5; }
+.amber { color: #d4c571; }
+.white { color: #ffffff; }
+input[type="text"]::-webkit-input-placeholder {
+    color: #ffffff !important;
+    font-size: 14px;
+    opacity: 1;
+
+}
+input[type="text"]::-moz-placeholder {
+    color: #ffffff !important;
+    font-size: 14px;
+    opacity: 1;
+}
+input[type="text"]:-ms-input-placeholder {
+    color: #ffffff !important;
+    font-size: 14px;
+    opacity: 1;
+}
+input[type="number"]::-webkit-input-placeholder {
+    color: #ffffff !important;
+    font-size: 14px;
+    opacity: 1;
+
+}
+input[type="number"]::-moz-placeholder {
+    color: #ffffff !important;
+    font-size: 14px;
+    opacity: 1;
+}
+input[type="number"]:-ms-input-placeholder {
+    color: #ffffff !important;
+    font-size: 14px;
+    opacity: 1;
+}
 .main-header {
     width: 100%;
     padding: 0 20px;
@@ -19,6 +53,12 @@
     max-width: 50px;
     margin-top: 5px;
 }
+.website-name {
+    font-weight: 400;
+    font-size: 22px;
+    margin: 18px 0;
+}
+
 .right-alignedBtn {
     text-align: right;
     position: relative;
@@ -59,6 +99,7 @@
     border: 1px solid deepskyblue;
     color: deepskyblue;
     margin: 10px;
+    text-transform: capitalize;
 }
 .search-form .signinIcon {
     margin-right: 10px;
@@ -72,4 +113,81 @@
 .search {
     color: rgb(152, 152, 152);
     z-index: 1;
+}
+/*SubHeader*/
+.subheader-wrapper {
+    padding: 15px;
+}
+.subheader-wrapper .grid-bg {
+    background: url("./subheader-bg.png") no-repeat center;
+    width: 100%;
+    min-height: 120px;
+    box-shadow: 1px 1px 1px #7d7d7d;
+    padding: 15px 20px;
+    font-size: 14px;
+}
+.dropdown-grid {
+    width: 6%;
+    max-width: 6% !important;
+}
+.circle-icon {
+    width: 40px;
+    height: 40px;
+    background: #ffffff;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+.dropdown-icon {
+    fill: #d5c66f !important;
+    height: 40px !important;
+    width: 40px !important;
+}
+.subheader-wrapper .subheader-form {
+    width: 100%;
+}
+.subheader-wrapper .subheader-input {
+    background: rgba(255,255,255,0.5);
+    padding: 2px 12px;
+    width: 90%;
+}
+.subheader-wrapper .input-box {
+    position: relative;
+}
+.subheader-wrapper .input-icons {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.subheader-wrapper .grids-inner {
+    align-items: center;
+    text-align: center;
+}
+.subheader-wrapper .price-box {
+    background: rgba(255,255,255,0.5);
+}
+.subheader-wrapper .price-box input {
+    text-align: center;
+    color: #fff;
+}
+.subheader-input .MuiInput-input-42, .subheader-input svg{
+    color: #ffffff;
+    font-size: 14px;
+    text-align: left;
+}
+.subjects.subheader-input {
+    width: 100%;
+}
+.subheader-input .subject {
+    align-items: center;
+    display: flex;
+    padding-right: 5px;
+}
+.subheader-input .chip {
+    margin-right: 5px;
+    background-color: #fff !important;
+    color: #909090 !important;
+}
+.subheader-input .chip svg {
+    color: #bbbbbb;
 }

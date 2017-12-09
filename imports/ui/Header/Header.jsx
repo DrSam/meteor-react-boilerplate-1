@@ -6,6 +6,7 @@ import {FormControl} from 'material-ui/Form';
 import Input from 'material-ui/Input';
 
 import './header.css';
+import SubHeader from "./SubHeader";
 
 const style = {
     height: 60,
@@ -35,7 +36,7 @@ class Header extends Component {
     };
 
     render() {
-        const {search} = this.state;
+        const { search } = this.state;
         return (
             <div>
                 <Paper style={style} elevation={1}>
@@ -44,7 +45,7 @@ class Header extends Component {
                             <img src="./header-logo.png" alt="Logo" height='25' />
                         </div>
                         <div className="center-text">
-                            <h3 className="text-center amber">
+                            <h3 className="text-center amber website-name">
                                 <span className="blue"> Skill</span>
                                 Shape
                             </h3>
@@ -62,16 +63,18 @@ class Header extends Component {
                                             onChange={this.handleChange}
                                             disableUnderline="true"
                                         />
+
                                     </FormControl>
                                 </div>
                                 <Button className="signinBtn" raised>
                                     <InputIcon className="signinIcon" />
-                                    SignIn
+                                    Sign In
                                 </Button>
                             </form>
                         </div>
                     </div>
                 </Paper>
+                <SubHeader/>
             </div>
         );
     }
