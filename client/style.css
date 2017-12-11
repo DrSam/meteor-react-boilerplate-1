@@ -20,23 +20,47 @@
 .card .card-image{
 	height: 250px;
 }
+
+.card .card-image-second img{
+	height: 100%;
+	width: 100%;
+}
+.card .card-image-second{
+	position:absolute;
+	top:0;
+	height: 250px;
+}
+.card .card-image-three{
+	position:absolute;
+	top:0;
+	background:#dadada;
+	height: 250px;
+	width:100%;
+	transition:all 2s;
+}
+
+
+
 .card.card_item .card-title{
 	color: #333;
 	font-size: 20px;
 }
 .pageWrapper nav{
-	background: #ffad40;
+	background: #4db6ac;
 }
 .contentWrapper,.formWrapper{
 	width: 94%;
 	margin: 0px auto;
+}
+.imageWrapper{
+	width:100%;
 }
 .range-slider-container{
 	padding: 0 15px;
 }
 .page-footer{
 	padding-top: 0;
-	background-color: #ffad40;
+	background-color: #4db6ac;
 }
 #sidenav-overlay{
 	z-index: 1;
@@ -50,4 +74,37 @@
 
 .brand-logo,.brand-logo img{
 	height: 100%;
+}
+.chief_card img{
+	transition:all 1.5s;
+	-webkit-filter:grayscale(80%);
+}
+.card-action a{
+	transition:all 1.5s;
+}
+.chief_card:hover{
+	text-align:center;
+}
+.chief_card:hover .first_image{
+	transform:rotateY(360deg);
+	position:absolute;
+	top:-248px;
+	-webkit-filter:grayscale(10%);
+}
+.chief_card:hover .second_image{
+	-webkit-filter:grayscale(10%);
+}
+.chief_card:hover .card-image-three{
+	height:0px;
+	opacity:0.7;
+}
+.chief_card:hover a{
+	padding:10px;
+	background:#4db6ac;
+}
+.first_image{
+	position:absolute;
+	z-index:99;
+	left:0;
+	top:0;
 }
