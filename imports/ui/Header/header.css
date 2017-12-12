@@ -46,6 +46,8 @@ input[type="number"]:-ms-input-placeholder {
     padding: 0 20px;
     float: left;
     clear: both;
+    height: 100%;
+    align-items: center;
 }
 .left-alignedLogo img {
     width: 100%;
@@ -130,6 +132,11 @@ input[type="number"]:-ms-input-placeholder {
     width: 6%;
     max-width: 6% !important;
 }
+.first-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .circle-icon {
     width: 40px;
     height: 40px;
@@ -190,4 +197,80 @@ input[type="number"]:-ms-input-placeholder {
 }
 .subheader-input .chip svg {
     color: #bbbbbb;
+}
+
+@media screen and (min-width: 1199px) {
+    .tab-view, .mobile-view { display: none; }
+}
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+    .mobile-view, .desktop-view { display: none; }
+    .tab-header, .tab-header-container {
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+    .tab-header .left-alignedLogo {
+        width: 100%;
+        float: none;
+        text-align: center;
+    }
+    .tab-header .rightMenu {
+        text-align: center;
+    }
+    .tab-header .search-icon {
+        position: absolute;
+        left: 12%;
+        z-index: 1;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .tab-header .signinIcon { margin-right: 2px;}
+    .tab-header .MuiInput-root-33 {
+        width: 90%;
+        margin-left: 15%;
+    }
+    .signinBtn {
+        background-color: #ffffff !important;
+        border: 1px solid deepskyblue !important;
+        color: deepskyblue !important;
+        text-transform: capitalize;
+        padding: 8px 13px !important;
+    }
+}
+
+@media screen and (max-width:767px) and (min-width:320px) {
+    .desktop-view, .tab-view { display: none; }
+    .mobile-view .left-alignedLogo {
+        width: auto;
+        float: none;
+        text-align: center;
+    }
+    .main-header.mobile-view, .mobile-view .mob-search, .mobile-view .rightMenu {
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    .mob-header {
+        width: 100%;
+    }
+    .mobile-view .search-icon {
+        position: absolute;
+        left: 12%;
+        z-index: 1;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .search-box .MuiInput-root-33 {
+        width: 90%;
+        margin-left: 15%;
+    }
+    .mob-drawer .MuiPaper-root-1 {
+        width: 60% !important;
+    }
+    .signinBtn {
+        background-color: #ffffff !important;
+        border: 1px solid deepskyblue !important;
+        color: deepskyblue !important;
+        text-transform: capitalize;
+    }
 }
