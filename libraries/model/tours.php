@@ -42,6 +42,103 @@ class Vr360ModelTours extends Vr360Model
 
 		return $tours;
 	}
+	public function SaveOption($columns,$values)
+	{
+
+		// Get a db connection.
+		$db = Vr360Factory::getDbo();
+		// Create a new query object.
+		$query = $db->getQuery(true);
+		$tmp = '';
+		foreach ($values as $i => $v) {
+			$tmp .= ($i ? ',' : '') . "'$v'";
+		}
+		// Prepare the insert query.
+		$query
+		    ->insert($db->quoteName('hotspots_option'))
+		    ->columns($db->quoteName($columns))
+		    ->values($tmp);
+
+		// Set the query using our newly populated query object and execute it.
+		$db->setQuery($query);
+		$db->execute();
+	}
+
+	public function SaveHotspot($columns, $values)
+	{
+		// Get a db connection.
+		$db = Vr360Factory::getDbo();
+		// Create a new query object.
+		$query = $db->getQuery(true);
+		$tmp = '';
+		foreach ($values as $i => $v) {
+			$tmp .= ($i ? ',' : '') . "'$v'";
+		}
+		// Prepare the insert query.
+		$query
+		    ->insert($db->quoteName('hotspots'))
+		    ->columns($db->quoteName($columns))
+		    ->values($tmp);
+
+		// Set the query using our newly populated query object and execute it.
+		$db->setQuery($query);
+		$db->execute();
+		return	$db->insertid();
+	}
+
+	public function GetOption($id){
+		// Get a db connection.
+		$db = Vr360Factory::getDbo();
+		// Create a new query object.
+		$query = $db->getQuery(true);
+		// $tmp = '';
+		// foreach ($values as $i => $v) {
+		// 	$tmp .= ($i ? ',' : '') . "'$v'";
+		// }
+		// Prepare the insert query.
+
+		$query->select("*");
+		$query->from($db->quoteName('hotspots_option'));
+		$query->where($db->quoteName('hotspot_id') . ' = '. $db->quote($id));
+
+		// Set the query using our newly populated query object and execute it.
+		$db->setQuery($query);
+		$db->execute();
+		return	$db->loadObjectList();
+	}
+
+	public function Uptadeoption($id,$cols){
+		$db = Vr360Factory::getDbo();
+
+		$query = $db->getQuery(true);
+
+		// Fields to update.
+		$fields =array();
+		foreach ($cols as $coli => $colv) {
+			array_push($fields,$db->quoteName($coli) . ' = ' . $db->quote($colv));
+		}
+
+		// $fields = array(
+		//     $db->quoteName('profile_value') . ' = ' . $db->quote('Updating custom message for user 1001.'),
+		//     $db->quoteName('ordering') . ' = 2'
+		// );
+
+		// Conditions for which records should be updated.
+		$conditions = array(
+		    $db->quoteName('id') . '='.$id
+		);
+
+// 		    $conditions = array(
+//     $db->quoteName('profile_key') . ' = ' . $db->quote('custom.message')
+// );
+
+
+		$query->update($db->quoteName('hotspots_option'))->set($fields)->where($conditions);
+
+		$db->setQuery($query);
+
+		$result = $db->execute();
+	}
 
 	/**
 	 * @return array|boolean
