@@ -107,34 +107,18 @@ class Vr360ModelTours extends Vr360Model
 		return	$db->loadObjectList();
 	}
 
-	public function Uptadeoption($id,$cols){
+	public function Uptadeoption($id,$c,$r){
 		$db = Vr360Factory::getDbo();
-
 		$query = $db->getQuery(true);
-
-		// Fields to update.
-		$fields =array();
-		foreach ($cols as $coli => $colv) {
-			array_push($fields,$db->quoteName($coli) . ' = ' . $db->quote($colv));
-		}
-
-		// $fields = array(
-		//     $db->quoteName('profile_value') . ' = ' . $db->quote('Updating custom message for user 1001.'),
-		//     $db->quoteName('ordering') . ' = 2'
-		// );
-
-		// Conditions for which records should be updated.
+			echo $c;
+		$fields = array(
+		    		$db->quoteName($c). "=".$db->quote($r)
+				);
 		$conditions = array(
-		    $db->quoteName('id') . '='.$id
+		    $db->quoteName('hotspot_id') . '='.$id
 		);
 
-// 		    $conditions = array(
-//     $db->quoteName('profile_key') . ' = ' . $db->quote('custom.message')
-// );
-
-
 		$query->update($db->quoteName('hotspots_option'))->set($fields)->where($conditions);
-
 		$db->setQuery($query);
 
 		$result = $db->execute();

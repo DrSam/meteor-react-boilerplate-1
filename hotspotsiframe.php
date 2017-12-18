@@ -109,12 +109,34 @@ if(isset($_POST["getoptions"] ) ){
 }
 
 if(isset($_POST["editoptions"] )){
-	$text_t = $_POST['text_t'];
+	$text_t_edit = $_POST['text_t_edit'];
+	$text_d_edit = $_POST['text_d_edit'];
+
+	$tooltip_t_edit = $_POST['tooltip_t_edit'];
+	$tooltip_d_edit = $_POST['tooltip_d_edit'];
+
+	$modal_t_edit = $_POST['modal_t_edit'];
+	$modal_d_edit = $_POST['modal_d_edit'];
+
+	$image_input_edit = $_POST['image_input_edit'];
+	$video_input_edit = $_POST['video_input_edit'];
+	$scene_d_edit = $_POST['scene_d_edit'];
+
 	$hotspod_id =$_POST["hotspod_id"];
 
 	$res = $tours->GetOption($hotspod_id);
-		echo json_encode($res[0]);
-		print_r($res[0]->id);
+	$tours->Uptadeoption($hotspod_id,'text_t',$text_t_edit);
+	$tours->Uptadeoption($hotspod_id,'text_d',$text_d_edit);
+	$tours->Uptadeoption($hotspod_id,'tooltip_t',$tooltip_t_edit);
+	$tours->Uptadeoption($hotspod_id,'tooltip_d',$tooltip_d_edit);
+
+	$tours->Uptadeoption($hotspod_id,'modal_t',$modal_t_edit);
+	$tours->Uptadeoption($hotspod_id,'modal_d',$modal_d_edit);
+
+	$tours->Uptadeoption($hotspod_id,'image_url',$image_input_edit);
+	$tours->Uptadeoption($hotspod_id,'video_url',$video_input_edit);
+	$tours->Uptadeoption($hotspod_id,'link_scene',$scene_d_edit);
+
 	die();
 }
 
@@ -489,40 +511,141 @@ if(isset($_POST["editoptions"] )){
 		</button>
 		<a class="popup-close" data-popup-close="popup-1" href="#">x</a>
 
-			<div id="text_div_edit" class="form-group" style="display: none;">
-		<form type="POST">
-						<div class="form-group">
-							<input
-								id='text_t'
-								type="text"
-								size="30"
-								placeholder="Edit Text Title"
-								class="form-control"
-							/>
-						</div>
-						<div class="form-group">
-							<textarea
-								class="form-control"
-								placeholder="Input Description"
-								id="text_d"
-								maxlength="255"
-								style="
-								resize: none;
-								width:257px;
-								overflow:hidden;
-								margin-top:2px;
-								margin-bottom:2px;
-								height: 155px;
-								"
-							></textarea>
-						</div>
-						<button
-							type="button"
-							class="btn btn-default"
-							onclick="OkEdit()">Ok
-						</button>
-			</form>
-					</div>
+		<div id="text_div_edit" class="form-group" style="display: none;">
+			<div class="form-group">
+				<input
+				id='text_t_edit'
+				type="text"
+				size="30"
+				placeholder="Edit  Title"
+				class="form-control"
+				/>
+			</div>
+			<div class="form-group">
+				<textarea
+				class="form-control"
+				placeholder="Edit Description"
+				id="text_d_edit"
+				maxlength="255"
+				style="
+				resize: none;
+				width:257px;
+				overflow:hidden;
+				margin-top:2px;
+				margin-bottom:2px;
+				height: 155px;
+				"
+				></textarea>
+			</div>
+			<button
+			type="button"
+			class="btn btn-default"
+			onclick="OkEdit()">Ok
+			</button>
+		</div>
+
+		<div id="tooltip_div_edit" class="form-group" style="display: none;">
+			<div class="form-group">
+				<input
+				id='tooltip_t_edit'
+				type="text"
+				size="30"
+				placeholder="Edit Title"
+				class="form-control"
+				/>
+			</div>
+			<div class="form-group">
+				<textarea
+				class="form-control"
+				placeholder="Edit Tooltip"
+				id="tooltip_d_edit"
+				maxlength="255"
+				style="
+				resize: none;
+				width:257px;
+				overflow:hidden;
+				margin-top:2px;
+				margin-bottom:2px;
+				height: 155px;
+				"
+				></textarea>
+			</div>
+			<button
+			type="button"
+			class="btn btn-default"
+			onclick="OkEdit()">Ok
+			</button>
+		</div>
+		<div id="modal_div_edit" class="form-group" style="display: none;">
+			<div class="form-group">
+				<input
+				id='modal_t_edit'
+				type="text"
+				size="30"
+				placeholder="Edit  Title"
+				class="form-control"
+				/>
+			</div>
+			<div class="form-group">
+				<textarea
+				class="form-control"
+				placeholder="Edit Description"
+				id="modal_d_edit"
+				maxlength="255"
+				style="
+				resize: none;
+				width:257px;
+				overflow:hidden;
+				margin-top:2px;
+				margin-bottom:2px;
+				height: 155px;
+				"
+				></textarea>
+			</div>
+			<button
+			type="button"
+			class="btn btn-default"
+			onclick="OkEdit()">Ok
+			</button>
+		</div>
+		<div id="image_div_edit" class="form-group" style="display:none">
+			<div class="form-group">
+				<input id="image_input_edit" type="text" size="30" placeholder="Image Url" class="form-control" style="margin-bottom: 2px ">
+				<button
+					type="button"
+					class="btn btn-default"
+					onclick="OkEdit()">Ok
+				</button>
+			</div>
+		</div>
+		<div id="video_div_edit" class="form-group" style="display:none">
+			<div class="form-group">
+				<input id="video_input_edit" type="text" size="30" placeholder="Image Url" class="form-control" style="margin-bottom: 2px ">
+				<button
+					type="button"
+					class="btn btn-default"
+					onclick="OkEdit()">Ok
+				</button>
+			</div>
+		</div>
+		<div id="scene_div_edit" class="form-group" style="display:none">
+			<div class="form-group">
+				<select
+					id="scene_d_edit"
+					class="selectpicker"
+					data-width="261px"
+					>
+					<?php foreach ($tours->getList() as $tour): ?>
+					<option title="<?=$tour->name?>"" value="<?=$tour->alias?>"><?=$tour->name?></option>
+					<?php endforeach ?>
+				</select>
+			</div>
+			<button
+				type="button"
+				class="btn btn-default"
+				onclick="OkEdit()">Ok
+			</button>
+		</div>
 
 	</div>
 	<div class="container-fluid">
@@ -702,29 +825,30 @@ if(isset($_POST["editoptions"] )){
 
 		}
 
-		function editModal(){
-			disableButton(['#edit_Tooltip', '#edittext', '#edit_image', '#edit_video' ,'#edit_link' ,'#saveEdit' ]);
-			$("#modal_div").show();
+		function editTooltip(){
+			disableButton(['#edit_text' , '#edit_modal',  '#edit_image', '#edit_video' ,'#edit_link' ,'#saveEdit' ]);
+			$("#tooltip_div_edit").show();
 		}
 
-		function editTooltip(){
-			disableButton(['#edit_text' , '#edit_modal', '#edittext', '#edit_image', '#edit_video' ,'#edit_link' ,'#saveEdit' ]);
-			$("#text_div_edit").show();
+		function editModal(){
+			disableButton(['#edit_text','#edit_Tooltip',  '#edit_image', '#edit_video' ,'#edit_link' ,'#saveEdit' ]);
+			$("#modal_div_edit").show();
 		}
+
 
 		function editImage(){
 			disableButton([ '#edit_text' , '#edit_modal', '#edit_Tooltip', '#edit_video' ,'#edit_link' ,'#saveEdit' ]);
-			$("#image_div").show();
+			$("#image_div_edit").show();
 		}
 
 		function editVideo(){
-			disableButton([ '#edit_text' , '#edit_modal', '#edit_Tooltip', '#editimage' ,'#edit_link' ,'#saveEdit' ]);
-			$("#video_div").show();
+			disableButton([ '#edit_text' , '#edit_modal', '#edit_Tooltip', '#edit_image' ,'#edit_link' ,'#saveEdit' ]);
+			$("#video_div_edit").show();
 		}
 
 		function editScene(){
-			disableButton([ '#edit_text' , '#edit_modal', '#edit_Tooltip', '#editimage' ,'#edit_video' ,'#saveEdit' ]);
-			$("#link_div").show();
+			disableButton([ '#edit_text' , '#edit_modal', '#edit_Tooltip', '#edit_image' ,'#edit_video' ,'#saveEdit' ]);
+			$("#scene_div_edit").show();
 		}
 
 
@@ -738,14 +862,37 @@ if(isset($_POST["editoptions"] )){
 			enableButton(['#add_text','#add_Tooltip', '#add_Modal', '#add_image', '#add_video' ,'#add_link','#savehotspots']);
 		}
 		function saveEdit(){
-			var text_t = $('#text_t').val();
+			var text_t_edit = $('#text_t_edit').val();
+			var text_d_edit = $('#text_d_edit').val();
+
+			var tooltip_t_edit = $('#tooltip_t_edit').val();
+			var tooltip_d_edit = $('#tooltip_d_edit').val();
+
+			var modal_t_edit = $('#modal_t_edit').val();
+			var modal_d_edit = $('#modal_d_edit').val();
+
+			var image_input_edit = $('#image_input_edit').val();
+
+			var video_input_edit = $('#video_input_edit').val();
+
+			var scene_d_edit = $('#scene_d_edit').val();
+
+
 			var hotspod_id =hotspots[uniqname];
 			$.ajax({
 				url: "",
 				type: "POST",
 				data: {
 					editoptions: true,
-					text_t: text_t,
+					text_t_edit: text_t_edit,
+					text_d_edit: text_d_edit,
+					tooltip_t_edit: tooltip_t_edit,
+					tooltip_d_edit: tooltip_d_edit,
+					modal_t_edit: modal_t_edit,
+					modal_d_edit: modal_d_edit,
+					image_input_edit: image_input_edit,
+					video_input_edit: video_input_edit,
+					scene_d_edit: scene_d_edit,
 					hotspod_id: hotspod_id
 				},
 				success: function(data) {
@@ -754,6 +901,12 @@ if(isset($_POST["editoptions"] )){
 		}
 
 		function OkEdit(){
+			$("#text_div_edit").hide();
+			$("#tooltip_div_edit").hide();
+			$("#modal_div_edit").hide();
+			$("#image_div_edit").hide();
+			$("#video_div_edit").hide();
+			$("#scene_div_edit").hide();
 			$("#text_div_edit").hide();
 			enableButton(['#edit_text','#edit_Tooltip', '#edit_modal', '#edit_image', '#edit_video' ,'#edit_link',"#saveEdit"]);
 		}
@@ -857,8 +1010,20 @@ if(isset($_POST["editoptions"] )){
 				},
 				dataType: 'json',
 				success:function(data) {
-					$('#text_t').val(data.text_t);
-					$('#text_d').text(data.text_d);
+					$('#text_t_edit').val(data.text_t);
+					$('#text_d_edit').text(data.text_d);
+
+					$('#tooltip_t_edit').val(data.tooltip_t);
+					$('#tooltip_d_edit').text(data.tooltip_d);
+
+					$('#modal_t_edit').val(data.modal_t);
+					$('#modal_d_edit').text(data.modal_d);
+
+					$('#video_input_edit').val(data.video_url);
+					$('#image_input_edit').val(data.image_url);
+					$('#sce').text(data.link_scene);
+					$('scene_select_edit').val(data.link_scene);
+
 					console.log(data)
 					console.log(data.hotspot_id)
 				}
@@ -1049,8 +1214,6 @@ if(isset($_POST["editoptions"] )){
 		function isReady() {
 			if (
 				add_hotpost.disabled == false
-				&& document.getElementById('remove_hotpost').disabled == false
-				&& document.getElementById('moveHotspot').disabled == false
 			) {
 				return true;
 			}

@@ -83,7 +83,6 @@ class Vr360ModelUser extends Vr360Model
 
 		$tableUser = new Vr360TableUser;
 		$tableUser->load(array('id' => $user->id, 'password' => md5($input->getString('currentpassword'))));
-
 		if ($tableUser->id)
 		{
 			$tableUser->email = $input->getString('email');
@@ -113,6 +112,14 @@ class Vr360ModelUser extends Vr360Model
 				if (!Vr360HelperFolder::exists($userDataDir))
 				{
 					Vr360HelperFolder::create($userDataDir);
+				}
+				$im = imagecreatefrompng($userDataDir . '/logo.png');
+				// $size = min(imagesx($im), imagesy($im));
+				$im2 = imagecrop($im, ['x' => 0, 'y' => 0, 'width' => 15, 'height' => 15]);
+				if ($im2 !== FALSE) {
+					echo 57;
+					die();
+				    imagepng($im2, 'example-cropped.png');
 				}
 
 				if (!move_uploaded_file($file['tmp_name'], $userDataDir . '/logo.png'))
